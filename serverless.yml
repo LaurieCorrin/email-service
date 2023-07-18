@@ -1,0 +1,12 @@
+service: email-service
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-west-2
+
+functions:
+  send-email:
+    handler: handler.sendEmail
+    url: true
