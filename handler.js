@@ -1,11 +1,33 @@
+const AWS = require('aws-sdk');
+const ses = new AWS.ses({ region: 'us-east-1 '});
+
 'use strict';
 
 module.exports.sendEmail = async (event) => {
+  const params = {
+    Destination: {
+      ToAddresses: ['laurie@corrin.net'], // This should be your email address
+    },
+    Message: {
+      Body: {
+        Text: {
+          Data: 'This is a message generated automatically from a Lambda function.',
+        },
+      },
+      Subject: {
+        Data: 'Hello from Lambda',
+      },
+    },
+    Source: 'laurie.corrin@multiverse.io', // This is the email listed in sender. Set it to your email for this practice
+  };
+  await ses.sendEmail(params).promise();
+
+// in the object that is `return`ed, replace the `body.message` property with `Email sent to ${queryParams.email}`
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Go Serverless! Your function executed successfully!',
+        message: `Email sent to ${queryParams.email}`,
         input: event,
       },
       null,
@@ -13,7 +35,5 @@ module.exports.sendEmail = async (event) => {
     ),
   };
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
 
