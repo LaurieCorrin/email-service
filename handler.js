@@ -1,7 +1,7 @@
-const AWS = require('aws-sdk');
-const ses = new AWS.ses({ region: 'us-east-1 '});
-
 'use strict';
+
+const AWS = require('aws-sdk');
+const ses = new AWS.SES({ region: 'us-east-1 '});
 
 module.exports.sendEmail = async (event) => {
   const params = {
