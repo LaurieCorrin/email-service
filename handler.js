@@ -22,16 +22,16 @@ module.exports.sendEmail = async (event) => {
 
   const params = {
     Destination: {
-      ToAddresses: ['laurie@corrin.net'], // This should be your email address
+      ToAddresses: [email], // This should be your email address
     },
     Message: {
       Body: {
         Text: {
-          Data: 'This is a message generated automatically from a Lambda function.',
+          Data: message,
         },
       },
       Subject: {
-        Data: 'Hello from Lambda',
+        Data: subject,
       },
     },
     Source: 'laurie.corrin@multiverse.io', // This is the email listed in sender. Set it to your email for this practice
