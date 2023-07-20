@@ -4,6 +4,7 @@ const AWS = require('aws-sdk');
 const ses = new AWS.SES({ region: 'us-west-2'});
 
 module.exports.sendEmail = async (event) => {
+ 
   const params = {
     Destination: {
       ToAddresses: ['laurie@corrin.net'], // This should be your email address
@@ -27,7 +28,7 @@ module.exports.sendEmail = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: `Email sent to ${queryParams.email}`,
+        message: `Email sent to ${params.Destination.ToAddresses}`,
         input: event,
       },
       null,
