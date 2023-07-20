@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.sendMail = async (event) => {
+module.exports. = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(
